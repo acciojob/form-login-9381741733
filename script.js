@@ -1,8 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("userForm").addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent form from refreshing the page
-        getFormvalue();
-    });
+    let form = document.getElementById("userForm");
+    
+    if (form) {
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            getFormvalue();
+        });
+    } else {
+        console.error("Form not found! Check if the form exists in the HTML.");
+    }
 });
 
 function getFormvalue() {
@@ -14,5 +20,7 @@ function getFormvalue() {
         return;
     }
 
-    alert(fname + " " + lname);
+    let fullName = `${fname} ${lname}`;
+    alert(fullName);
+    console.log("Full Name:", fullName);
 }
