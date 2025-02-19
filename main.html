@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Form</title>
+    <title>Form Submission</title>
     <style>
         body {
             display: flex;
@@ -11,9 +11,8 @@
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
-            font-family: Arial, sans-serif;
         }
-        .container {
+        .form-container {
             background: white;
             padding: 20px;
             border-radius: 8px;
@@ -21,51 +20,45 @@
         }
         input {
             display: block;
-            width: 100%;
-            margin-bottom: 10px;
+            margin: 10px 0;
             padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            width: 100%;
         }
         button {
-            background-color: #3498db;
+            padding: 10px;
+            background-color: #28a745;
             color: white;
             border: none;
-            padding: 10px;
             cursor: pointer;
-            width: 100%;
-            border-radius: 4px;
         }
-        button:hover {
-            background-color: #2980b9;
+        button:disabled {
+            background-color: #ccc;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="form-container">
         <form id="userForm">
-            <label for="fname">First Name:</label>
-            <input type="text" id="fname" name="fname" required>
-            
-            <label for="lname">Last Name:</label>
-            <input type="text" id="lname" name="lname" required>
-            
-            <button type="submit">Submit</button>
+            <input type="text" name="fname" id="fname" placeholder="First Name" required>
+            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
+            <input type="submit" value="Submit">
         </form>
     </div>
-
+    
     <script>
-        document.getElementById("userForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent the form from refreshing the page
-            getFormvalue();
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("userForm").addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent form from refreshing the page
+                getFormvalue();
+            });
         });
 
         function getFormvalue() {
             let fname = document.getElementById("fname").value.trim();
             let lname = document.getElementById("lname").value.trim();
 
-            if (!fname && !lname) {
-                alert("Please enter your name.");
+            if (!fname || !lname) {
+                alert("Please enter both first and last name.");
                 return;
             }
 
