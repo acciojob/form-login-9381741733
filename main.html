@@ -3,66 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Submission</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        .form-container {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        input {
-            display: block;
-            margin: 10px 0;
-            padding: 8px;
-            width: 100%;
-        }
-        button {
-            padding: 10px;
-            background-color: #28a745;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:disabled {
-            background-color: #ccc;
-        }
-    </style>
+    <title>Simple Form</title>
 </head>
 <body>
-    <div class="form-container">
-        <form id="userForm">
-            <input type="text" name="fname" id="fname" placeholder="First Name" required>
-            <input type="text" name="lname" id="lname" placeholder="Last Name" required>
-            <input type="submit" value="Submit">
-        </form>
-    </div>
-    
+    <form onsubmit="showName(event)">
+        <input type="text" id="fname" placeholder="First Name" required>
+        <input type="text" id="lname" placeholder="Last Name" required>
+        <button type="submit">Submit</button>
+    </form>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            document.getElementById("userForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent form from refreshing the page
-                getFormvalue();
-            });
-        });
-
-        function getFormvalue() {
-            let fname = document.getElementById("fname").value.trim();
-            let lname = document.getElementById("lname").value.trim();
-
-            if (!fname || !lname) {
-                alert("Please enter both first and last name.");
-                return;
-            }
-
-            alert(fname + " " + lname);
+        function showName(event) {
+            event.preventDefault(); // Prevents form from refreshing the page
+            let firstName = document.getElementById("fname").value;
+            let lastName = document.getElementById("lname").value;
+            alert(firstName + " " + lastName);
         }
     </script>
 </body>
